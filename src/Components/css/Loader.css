@@ -1,0 +1,106 @@
+
+
+.loader{
+	-webkit-perspective:700px;
+	perspective: 700px;
+    text-align: center;
+    margin-top: 25vh;
+}
+
+.loader>span{
+	font-size: 75px;
+	font-family: "franklin gothic medium",sans-serif;
+	display: inline-block;
+	animation:flip 2.6s infinite linear;
+	transform-origin:0 70%;
+	transform-style:preserve-3d;
+	-webkit-transform-style:preserve-3d;
+}
+
+@keyframes flip{
+	35%{
+		transform: rotateX(360deg);
+	}
+	100%{
+		transform: rotatex(360deg);
+	}
+}
+
+.loader>span:nth-child(even){
+	color: #9edced;
+
+}
+
+.loader>span:nth-child(1){
+	color: #bcbcbc;
+}
+
+.loader>span:nth-child(6){
+	color: #bcbcbc;
+}
+
+.loader>span:nth-child(8){
+	color: #bcbcbc;
+}
+
+
+.loader>span:nth-child(2){
+	animation-delay: 0.3s;
+}
+
+.loader>span:nth-child(3){
+	animation-delay: 0.6s;
+}
+
+.loader>span:nth-child(4){
+	animation-delay: 0.9s;
+}
+
+.loader>span:nth-child(5){
+	animation-delay: 1.2s;
+}
+
+.loader>span:nth-child(6){
+	animation-delay: 1.5s
+}
+
+.loader>span:nth-child(7){
+	animation-delay: 1.8s
+}
+
+.loader>span:nth-child(8){
+	animation-delay: 2.1s
+}
+.loader>span:nth-child(9){
+	animation-delay: 2.4s
+}
+.loader>span:nth-child(10){
+	animation-delay: 2.7s
+}
+.loader>span:nth-child(11){
+	animation-delay: 3.0s
+}
+.loader>span:nth-child(12){
+	animation-delay: 3.3s
+}
+.loader>span:nth-child(13){
+	animation-delay: 3.6s
+}
+.loader>span:nth-child(14){
+	animation-delay: 3.9s
+}
+.loader>span:nth-child(15){
+	animation-delay: 4.2s
+}
+.loader>span:nth-child(16){
+	animation-delay: 4.5s
+}
+.loader>span:nth-child(17){
+	animation-delay: 4.8s
+}
+.loader>span:nth-child(18){
+	animation-delay: 5.1s
+}
+.loader>span:nth-child(19){
+	animation-delay: 5.4s
+}
