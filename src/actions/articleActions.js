@@ -14,6 +14,12 @@ import {
     SEARCH_REQUEST,
     SEARCH_SUCCESS,
     SEARCH_FAIL,
+    SEARCH_TAG_FAIL,
+    SEARCH_TAG_SUCCESS,
+    SEARCH_TAG_REQUEST,
+    CREATE_COMMENT_REQUEST,
+    CREATE_COMMENT_SUCCESS,
+    CREATE_COMMENT_FAIL,
  } from '../constants/articleConstants'
 import axios from 'axios'
 
@@ -47,7 +53,6 @@ export const detailArticle = (url) => async (dispatch) => {
         })
 
         const {data} = await axios.get(`api/articles/${url}/`)
-
         dispatch({
             type: ARTICLE_DETAIL_SUCCESS,
             payload: data
@@ -131,6 +136,50 @@ export const searchAction = (keyword='') => async (dispatch) => {
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message
+        })
+    }
+}
+
+export const searchTagAction = (tag='') => async (dispatch) => {
+    try {
+        dispatch({
+            type: SEARCH_TAG_REQUEST
+        })
+
+        const {data} = await axios.get(`api/search/articles/tag/${tag}`)
+
+        dispatch({
+            type: SEARCH_TAG_SUCCESS,
+            payload: data
+        })
+    } catch(error) {
+        dispatch({
+            type: SEARCH_TAG_FAIL,
+            payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message
+        })
+    }
+}
+
+export const createCommentAction = (articleId, text) => async (dispatch) => {
+    try {
+        dispatch({
+            type: CREATE_COMMENT_REQUEST
+        })
+
+        const {data} = await axios.post(`api/article/${articleId}/comment/create/`, {'text': text})
+
+        dispatch({
+            type: CREATE_COMMENT_SUCCESS,
+            payload: data,
+        })
+    }catch(error) {
+        dispatch({
+            type: CREATE_COMMENT_FAIL,
+            payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message,
         })
     }
 }

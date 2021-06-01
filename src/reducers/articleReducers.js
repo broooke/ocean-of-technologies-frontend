@@ -18,6 +18,13 @@ import {
     SEARCH_REQUEST,
     SEARCH_SUCCESS,
     SEARCH_FAIL,
+    
+    SEARCH_TAG_REQUEST,
+    SEARCH_TAG_SUCCESS,
+    SEARCH_TAG_FAIL,
+    CREATE_COMMENT_REQUEST,
+    CREATE_COMMENT_SUCCESS,
+    CREATE_COMMENT_FAIL
  } from '../constants/articleConstants'
 
 export const articleListReducer = (state={articles:[]}, action) => {
@@ -37,7 +44,7 @@ export const articleListReducer = (state={articles:[]}, action) => {
         
 }
 
-export const articleDetailReducer = (state={article:{}}, action) => {
+export const articleDetailReducer = (state={article:{comments:[]}}, action) => {
     switch (action.type) {
         case ARTICLE_DETAIL_REQUEST:
             return {loading: true, ...state}
@@ -83,6 +90,32 @@ export const searchArticleReducer = (state={articles:[]}, action) => {
         case SEARCH_SUCCESS:
             return {loading: false, articles: action.payload}
         case SEARCH_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+export const searchArticlesTagReducer = (state={articles:[]}, action) => {
+    switch (action.type) {
+        case SEARCH_TAG_REQUEST:
+            return {loading: true, ...state}
+        case SEARCH_TAG_SUCCESS:
+            return {loading: false, articles: action.payload}
+        case SEARCH_TAG_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+export const createCommentReducer = (state={}, action) => {
+    switch (action.type) {
+        case CREATE_COMMENT_REQUEST:
+            return {loading: true}
+        case CREATE_COMMENT_SUCCESS:
+            return {loading: false, success: true}
+        case CREATE_COMMENT_FAIL:
             return {loading: false, error: action.payload}
         default:
             return state

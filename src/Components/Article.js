@@ -25,7 +25,7 @@ function Article({article}) {
             <Col style={{borderRadius: '5px', border: '2px solid #bbbcc4', marginTop: '15px', padding: '7px', display: 'inline-block'}}>
                 <span>
                     <span><i className='fas fa-eye'></i> {article.views}</span>&nbsp; &nbsp;
-                    <span><i className='fas fa-comment'></i> 15</span>&nbsp;
+                    <span><i className='fas fa-comment'></i> {article.comments.length}</span>&nbsp;
                 </span>
             </Col>
 

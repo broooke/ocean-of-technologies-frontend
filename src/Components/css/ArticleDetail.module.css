@@ -6,3 +6,8 @@
     max-width: 100%;
     height: auto;
 }
+
+.TextArea {
+    border: none;
+    width: 100%;
+}

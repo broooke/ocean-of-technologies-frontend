@@ -22,7 +22,7 @@ function Articles({history}) {
     return (
         <React.Fragment>
         <Menu />
-        <Container>
+        <Container style={{marginTop: 25}}>
             {
             loading ? <Loader />
                 : error ? <h3>{error}</h3>

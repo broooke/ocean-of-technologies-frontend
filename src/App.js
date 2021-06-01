@@ -9,11 +9,11 @@ function App() {
   return (
     <Router>
       <Header />
-      <main>
+      <main style={{marginTop: 60}}>
         <Route path="/" component={ArticlesScreen} exact />
         <Route path="/articles/:url" component={ArticleScreen} />
         <Route path="/search/articles/:name" component={SearchArticlesScreen} />
-        <Route path="/search/articles/tag/:name" component={TagSearchArticlesScreen} />
+        <Route path="/search/tags/articles/:name" component={TagSearchArticlesScreen} />
       </main>
     </Router>
   );

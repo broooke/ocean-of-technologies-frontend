@@ -7,7 +7,7 @@ import photo from  '../user.png'
 function Header() {
     return (
         <header className='header p-2'>
-			<Navbar expand="lg" collapseOnSelect>
+			<Navbar className="border" style={{backgroundColor: '#fff'}} fixed="top" expand="lg" collapseOnSelect>
 				<Container>
 					<LinkContainer exact={true} to='/'>
 						<Navbar.Brand>Ocean Of Technologies</Navbar.Brand>
