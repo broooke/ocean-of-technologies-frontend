@@ -162,13 +162,13 @@ export const searchTagAction = (tag='') => async (dispatch) => {
     }
 }
 
-export const createCommentAction = (articleId, text) => async (dispatch) => {
+export const createCommentAction = (articleId, text, parentId) => async (dispatch) => {
     try {
         dispatch({
             type: CREATE_COMMENT_REQUEST
         })
 
-        const {data} = await axios.post(`api/article/${articleId}/comment/create/`, {'text': text})
+        const {data} = await axios.post(`api/article/${articleId}/comment/create/`, {'text': text, "parent": parentId})
 
         dispatch({
             type: CREATE_COMMENT_SUCCESS,

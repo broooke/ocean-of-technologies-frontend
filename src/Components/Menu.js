@@ -25,10 +25,6 @@ function Menu() {
                                     <LinkContainer style={{color:'black', textDecoration: 'none', marginLeft: 15}} to='?category=devops'>
                                         <a>Devops</a>
                                     </LinkContainer>
-
-                                    <LinkContainer style={{color:'black', textDecoration: 'none', marginLeft: 15}} to='/qjjj'>
-                                        <a>Системное администрирование</a>
-                                    </LinkContainer>
                                 </Nav>
                             </Col>
                             <Col style={{display: 'flex', justifyContent: 'flex-end'}}>

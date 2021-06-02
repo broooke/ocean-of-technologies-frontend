@@ -2,18 +2,7 @@ import React from 'react'
 import photo from  '../user.png'
 import { Image, Col, Row } from 'react-bootstrap'
 
-function ArticleSearch({article, keyword}) {
-    const keywords = keyword.split(' ')
-    const headline = article.headline.split(' ')
-    const new_headline = []
-
-    for (let i=0; i<=headline.length; i++) {
-        for (let b=0; b<=keywords.length; b++) {
-            if (headline[i]?.toLowerCase().includes(keywords[b]?.toLowerCase())) {
-                new_headline.push(headline.indexOf(headline[i])) 
-            }
-        }
-    }
+function ArticleSearchTag({article}) {
 
     return (
         <div>
@@ -31,17 +20,13 @@ function ArticleSearch({article, keyword}) {
                     </div>
                 </div>
                 <h6>
-                    {headline.map((word, index) => {
-                        // eslint-disable-next-line no-lone-blocks
-                        if (new_headline.includes(headline.indexOf(word))) {
-                            return <span key={index} style={{background: 'yellow'}}>{word} </span>
-                        } else {
-                            return <span key={index}>{word} </span>
-                        }
-                    })}
+                    {article.headline}
                 </h6>
                 <p>
                     <small style={{color: 'rgba(0,0,0,.55)', borderRadius: '5px', border: '2px solid #bbbcc4', padding: 2}}>{article.category.name}</small>
+                    {article?.tags?.map((tag, index)=>(
+                        <span key={index}>#{tag.name} </span>
+                    ))}
                 </p>
             </Col>
             </Row>
@@ -49,4 +34,5 @@ function ArticleSearch({article, keyword}) {
     )
 }
 
-export default ArticleSearch
+export default ArticleSearchTag
+

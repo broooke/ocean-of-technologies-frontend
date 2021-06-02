@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { listArticles } from '../actions/articleActions'
 import Loader from '../Components/Loader'
 import Menu from "../Components/Menu"
+import StickyBox from "react-sticky-box"
 
 
 function Articles({history}) {
@@ -28,13 +29,15 @@ function Articles({history}) {
                 : error ? <h3>{error}</h3>
                     : 
                     <Row>
-                        <Col xs={8}>
+                        <Col xs={9}>
                             {articles.map((article, index) => (
                                 <Article article={article} key={index} />
                             ))}
                         </Col>
-                        <Col style={{maxWidth: '380px', marginLeft: 'auto'}} xs={4}>
+                        <Col style={{maxWidth: '380px', marginLeft: 'auto'}} xs={3}>
+                        <StickyBox offsetTop={80} offsetBottom={20}>
                             <RightColumn />
+                        </StickyBox>
                         </Col>
                     </Row>
             }

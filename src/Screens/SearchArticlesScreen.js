@@ -9,25 +9,23 @@ function SearchArticlesScreen({history, match}) {
     const dispatch = useDispatch()
     const articlesList = useSelector(state => state.search)
     const {loading, error, articles} = articlesList
-    const [searchKeyword, setSearchKeyword] = useState()
     const keyword =  match.params.name
 
     useEffect(() => {
         dispatch(searchAction(keyword))
-        setSearchKeyword(history?.location?.state?.search)
     }, [dispatch, history, match ])
 
     return (
         <React.Fragment>
             <div>
-                <SearchBar keyword={searchKeyword} />
+                <SearchBar keyword={keyword} />
                 {
                 loading ? <Loader />
                     : error ? <h3>{error}</h3>
                         :
                         <React.Fragment>
                         {articles.map((article, index) => (
-                            <ArticleSearch key={index} article={article} />
+                            <ArticleSearch key={index} article={article} keyword={keyword} />
                         ))}
                         </React.Fragment>
                 }
