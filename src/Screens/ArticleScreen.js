@@ -10,6 +10,7 @@ import Loader from '../Components/Loader'
 import Menu from "../Components/Menu"
 import StickyBox from "react-sticky-box"
 import classes from '../Components/css/ArticleDetail.module.css'
+import { LinkContainer } from 'react-router-bootstrap'
 
 function Article({match}) {
     const dispatch = useDispatch()
@@ -19,16 +20,21 @@ function Article({match}) {
     const createComment = useSelector(state => state.createComment)
     const {loading:commentLoading, success:commentSuccess, error:commentError} = createComment
     const [commentId, setCommentId] = useState('')
+    const [name, setName] = useState('')
+
+    const userLogin = useSelector(state => state.userLogin)
+    const {error:userError, loading:userLoading, userInfo} = userLogin
 
     useEffect(() => {
+        if (userInfo) setName(userInfo.username)
         if (commentSuccess) setComment('')
         dispatch(detailArticle(match.params.url))
-    }, [dispatch, match, commentSuccess])
+    }, [dispatch, match, commentSuccess, userInfo])
 
     const submitHandler = (event) => {
         event.preventDefault()
         const parentId = commentId
-        dispatch(createCommentAction(article.id, comment, parentId))
+        dispatch(createCommentAction(article.id, comment, parentId, name))
         setCommentId('')
     }
 
@@ -55,18 +61,26 @@ function Article({match}) {
                             {article && <ArticleDetail article={article}>
                             <div>
                                 {article.comments.length===0 && <p>Нет комментариев</p>}
-                                <Form onSubmit={submitHandler}>
-                                <div style={{marginBottom: 25, borderRadius: 10, backgroundColor: '#F7F7F8', padding: 25}}>
-                                <h4>Написать комментарий</h4>
+                                    {userInfo ? (
+                                        <Form onSubmit={submitHandler}>
+                                        <div style={{marginBottom: 25, borderRadius: 10, backgroundColor: '#fff', padding: 25}}>
+                                    <h4>Написать комментарий</h4>
                                     <div style={{backgroundColor: '#fff', padding: 8, border: '1px solid #bbbcc4', borderRadius: 10}}>
                                         <Form.Control id="contacttext" value={comment} onChange={(event) => setComment(event.target.value)} as="textarea" placeholder="Введите комментарий..." className={classes.TextArea}></Form.Control>
                                         <div className="d-grid gap-2 mt-1">
                                         <Button type="submit" variant="outline-primary" size="lg">Комментировать</Button>
                                         </div>
                                     </div>
-                                </div>
-                                </Form>
-                                <ListGroup style={{borderRadius: 10, backgroundColor: '#F7F7F8', padding: 25, marginBottom: 25}} variant='flush'>
+                                    </div>
+                                    </Form>): (
+                                        <div style={{marginBottom: 25, borderRadius: 10, backgroundColor: '#fff', padding: 25}}>
+                                            <h5>Авторизируетесь для того, чтобы оставить комментарий</h5>
+                                            <LinkContainer to='/login'>
+                                                <Button>Войти в аккаунт</Button>
+                                            </LinkContainer>
+                                        </div>
+                                    ) }
+                                <ListGroup style={{borderRadius: 10, backgroundColor: '#fff', padding: 25, marginBottom: 25}} variant='flush'>
                                     <h4>Комментарии</h4>
                                         {article.comments.map((comment)=>(
                                             <div key={comment.id} style={{border: '1px solid #bbbcc4', padding: 15 ,background: '#fff', borderRadius: 10, marginBottom: 10}}>

@@ -5,7 +5,7 @@ import photo from  '../user.png'
 
 function Article({article}) {
     return (
-        <div style={{borderRadius: 10, backgroundColor: '#F7F7F8', padding: 25, marginBottom: 25}}>
+        <div style={{borderRadius: 10, backgroundColor: '#fff', padding: 25, marginBottom: 25}}>
                 <span>
                     <Image src={photo} width="24px" height="24px" />&nbsp;
                     <span>Username</span>&nbsp;
@@ -19,8 +19,8 @@ function Article({article}) {
                 <p>
                     <small style={{color: 'rgba(0,0,0,.55)', borderRadius: '5px', border: '2px solid #bbbcc4', padding: 2}}>{article.category.name}</small>
                 </p>
-                <div style={{background: '#fff', borderRadius: 10, padding: 8, border: '1px solid #bbbcc4', textAlign: '-webkit-center'}}>
-                    <Image src={article.picture} fluid style={{width: '100%'}} />
+                <div style={{background: '#fff', borderRadius: 10, border: '1px solid #bbbcc4', textAlign: '-webkit-center'}}>
+                    <Image src={article.picture} fluid style={{width: '100%', borderRadius: 10}} />
                 </div>
                 <Col style={{borderRadius: '5px', border: '2px solid #bbbcc4', marginTop: '15px', padding: '7px', display: 'inline-block'}}>
                     <span>

@@ -18,21 +18,21 @@ function Menu() {
                                     <LinkContainer style={{color:'black', textDecoration: 'none', marginLeft: 15}} to='/'>
                                         <a>Все потоки</a>
                                     </LinkContainer>
-                                    <LinkContainer style={{color:'black', textDecoration: 'none', marginLeft: 15}} to='?category=programmirovanie'>
+                                    <LinkContainer style={{color:'black', textDecoration: 'none', marginLeft: 15}} to='/?category=programmirovanie'>
                                         <a>Программирование</a>
                                     </LinkContainer>
 
-                                    <LinkContainer style={{color:'black', textDecoration: 'none', marginLeft: 15}} to='?category=devops'>
+                                    <LinkContainer style={{color:'black', textDecoration: 'none', marginLeft: 15}} to='/?category=devops'>
                                         <a>Devops</a>
                                     </LinkContainer>
                                 </Nav>
                             </Col>
                             <Col style={{display: 'flex', justifyContent: 'flex-end'}}>
                                 <Nav>
-                                    <LinkContainer style={{color: '#686c7d', border: '1px solid #bbbcc4', borderRadius: '8px', background: '#fff' }} to='/lll'>
+                                    <LinkContainer style={{color: '#686c7d', border: '1px solid #bbbcc4', borderRadius: '8px', background: '#fff' }} to='/'>
                                         <button>Тех. поддержка</button>
                                     </LinkContainer>
-                                    <LinkContainer style={{color: '#686c7d', border: '1px solid #bbbcc4', borderRadius: '8px', marginLeft: 8, background: '#fff' }} to='/lll'>
+                                    <LinkContainer style={{color: '#686c7d', border: '1px solid #bbbcc4', borderRadius: '8px', marginLeft: 8, background: '#fff' }} to='/'>
                                         <button>Написать статью</button>
                                     </LinkContainer>
                                 </Nav>

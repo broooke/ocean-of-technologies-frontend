@@ -8,7 +8,7 @@ function ArticleDetail({article, children}) {
     
     return (
         <div>
-            <div style={{borderRadius: 10, backgroundColor: '#F7F7F8', padding: 25, marginBottom: 25}}>
+            <div style={{borderRadius: 10, backgroundColor: '#fff', padding: 25, marginBottom: 25}}>
                     <span>
                         <Image src={photo} width="24px" height="24px" />&nbsp;
                         <span>Username</span>&nbsp;

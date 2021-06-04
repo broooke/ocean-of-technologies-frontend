@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import {articleListReducer, articleDetailReducer, articleRightColumnReducer, mailReducer, searchArticleReducer, searchArticlesTagReducer, createCommentReducer} from './reducers/articleReducers'
+import { userLoginReducer, userRegisterReducer, userUpdateReducer } from './reducers/userReducers'
 import axios from 'axios'
 
 axios.defaults.baseURL = "http://127.0.0.1:8000/"
@@ -14,9 +15,17 @@ const reducer = combineReducers({
     search: searchArticleReducer,
     searchTag: searchArticlesTagReducer,
     createComment: createCommentReducer,
+    userLogin: userLoginReducer,
+    userRegister: userRegisterReducer,
+    userUpdate: userUpdateReducer,
 })
 
-const initialState = {}
+const userInfoFromStorage = localStorage.getItem('userInfo') ?
+    JSON.parse(localStorage.getItem('userInfo')) : null
+
+const initialState = {
+    userLogin: { userInfo: userInfoFromStorage}
+}
 
 const middleware = [thunk]
 
