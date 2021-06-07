@@ -32,7 +32,7 @@ function Menu() {
                                     <LinkContainer style={{color: '#686c7d', border: '1px solid #bbbcc4', borderRadius: '8px', background: '#fff' }} to='/'>
                                         <button>Тех. поддержка</button>
                                     </LinkContainer>
-                                    <LinkContainer style={{color: '#686c7d', border: '1px solid #bbbcc4', borderRadius: '8px', marginLeft: 8, background: '#fff' }} to='/'>
+                                    <LinkContainer style={{color: '#686c7d', border: '1px solid #bbbcc4', borderRadius: '8px', marginLeft: 8, background: '#fff' }} to='/article/create'>
                                         <button>Написать статью</button>
                                     </LinkContainer>
                                 </Nav>

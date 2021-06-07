@@ -39,7 +39,7 @@ function ProfileScreen({history}) {
             email,
         }))
     }
-
+    console.log(userInfo)
 
     const uploadFileHandler = async (event) => {
         const file = event.target.files[0]
@@ -75,7 +75,7 @@ function ProfileScreen({history}) {
                     </div>
                     <hr></hr>
                     <div>
-                        <Image style={{borderRadius: '50%', border: '1px solid gray'}} src={userInfo?.image} fluid  />
+                        {userInfo && <Image style={{borderRadius: '50%', border: '1px solid gray'}} src={userInfo.image} fluid  /> }
                     </div>
                     <hr></hr>
                     <div>

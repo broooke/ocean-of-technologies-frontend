@@ -2,24 +2,34 @@ import {
     ARTICLE_LIST_REQUEST,
     ARTICLE_LIST_SUCCESS,
     ARTICLE_LIST_FAIL,
+
     ARTICLE_DETAIL_FAIL,
     ARTICLE_DETAIL_REQUEST,
     ARTICLE_DETAIL_SUCCESS,
+
     ARTICLE_RIGHT_COLUMN_FAIL,
     ARTICLE_RIGHT_COLUMN_REQUEST,
     ARTICLE_RIGHT_COLUMN_SUCCESS,
+
     MAIL_REQUEST,
     MAIL_SUCCESS,
     MAIL_FAIL,
+
     SEARCH_REQUEST,
     SEARCH_SUCCESS,
     SEARCH_FAIL,
+
     SEARCH_TAG_FAIL,
     SEARCH_TAG_SUCCESS,
     SEARCH_TAG_REQUEST,
+
     CREATE_COMMENT_REQUEST,
     CREATE_COMMENT_SUCCESS,
     CREATE_COMMENT_FAIL,
+
+    CREATE_ARTICLE_FAIL,
+    CREATE_ARTICLE_REQUEST,
+    CREATE_ARTICLE_SUCCESS,
  } from '../constants/articleConstants'
 import axios from 'axios'
 
@@ -162,13 +172,24 @@ export const searchTagAction = (tag='') => async (dispatch) => {
     }
 }
 
-export const createCommentAction = (articleId, text, parentId, name) => async (dispatch) => {
+export const createCommentAction = (articleId, text, parentId, name) => async (dispatch, getState) => {
     try {
         dispatch({
             type: CREATE_COMMENT_REQUEST
         })
 
-        const {data} = await axios.post(`api/article/${articleId}/comment/create/`, {'text': text, "parent": parentId, 'username': name})
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        const {data} = await axios.post(`api/article/${articleId}/comment/create/`, {'text': text, "parent": parentId, 'username': name}, config)
 
         dispatch({
             type: CREATE_COMMENT_SUCCESS,
@@ -177,6 +198,39 @@ export const createCommentAction = (articleId, text, parentId, name) => async (d
     }catch(error) {
         dispatch({
             type: CREATE_COMMENT_FAIL,
+            payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message,
+        })
+    }
+}
+
+export const CreateArticleAction = (article) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: CREATE_ARTICLE_REQUEST
+        })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        const {data} = await axios.post(`api/article/create/`, article, config)
+
+        dispatch({
+            type: CREATE_ARTICLE_SUCCESS,
+            payload: data,
+        })
+    }catch(error) {
+        dispatch({
+            type: CREATE_ARTICLE_FAIL,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,

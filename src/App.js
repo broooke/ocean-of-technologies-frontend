@@ -7,6 +7,7 @@ import TagSearchArticlesScreen from "./Screens/TagSearchArticlesScreen";
 import LoginScreen from "./Screens/LoginScreen";
 import RegisterScreen from "./Screens/RegisterScreen";
 import ProfileScreen from "./Screens/ProfileScreen";
+import CreateArticle from "./Screens/CreateArticle";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" component={ArticlesScreen} exact />
         <Route path="/login" component={LoginScreen} />
         <Route path="/articles/:url" component={ArticleScreen} />
+        <Route path="/article/create" component={CreateArticle} />
         <Route path="/search/articles/:name" component={SearchArticlesScreen} />
         <Route path="/search/tags/articles/:name" component={TagSearchArticlesScreen} />
         <Route path="/register" component={RegisterScreen} />
