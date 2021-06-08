@@ -30,6 +30,9 @@ import {
     CREATE_ARTICLE_FAIL,
     CREATE_ARTICLE_REQUEST,
     CREATE_ARTICLE_SUCCESS,
+    GET_TAGS_FAIL,
+    GET_TAGS_REQUEST,
+    GET_TAGS_SUCCESS,
  } from '../constants/articleConstants'
 import axios from 'axios'
 
@@ -217,7 +220,7 @@ export const CreateArticleAction = (article) => async (dispatch, getState) => {
 
         const config = {
             headers: {
-                'Content-type': 'application/json',
+                'Content-type': 'multipart/form-data',
                 Authorization: `Bearer ${userInfo.token}`
             }
         }
@@ -231,6 +234,28 @@ export const CreateArticleAction = (article) => async (dispatch, getState) => {
     }catch(error) {
         dispatch({
             type: CREATE_ARTICLE_FAIL,
+            payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message,
+        })
+    }
+}
+
+export const GetTagsAction = () => async (dispatch) => {
+    try{
+        dispatch({
+            type: GET_TAGS_REQUEST
+        })
+
+        const {data} = await axios.get(`api/tags/`)
+
+        dispatch({
+            type: GET_TAGS_SUCCESS,
+            payload: data
+        })
+    }catch(error){
+        dispatch({
+            type: GET_TAGS_FAIL,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,

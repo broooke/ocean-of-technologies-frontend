@@ -30,6 +30,9 @@ import {
     CREATE_ARTICLE_REQUEST,
     CREATE_ARTICLE_SUCCESS,
     CREATE_ARTICLE_FAIL,
+    GET_TAGS_REQUEST,
+    GET_TAGS_SUCCESS,
+    GET_TAGS_FAIL,
  } from '../constants/articleConstants'
 
 export const articleListReducer = (state={articles:[]}, action) => {
@@ -134,6 +137,19 @@ export const createArticleReducer = (state={}, action) => {
         case CREATE_ARTICLE_SUCCESS:
             return {loading: false, success: true}
         case CREATE_ARTICLE_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+export const getTagsReducer = (state={tags:[]}, action) => {
+    switch(action.type) {
+        case GET_TAGS_REQUEST:
+            return {...state, loading: true}
+        case GET_TAGS_SUCCESS:
+            return {loading: false, tags: action.payload}
+        case GET_TAGS_FAIL:
             return {loading: false, error: action.payload}
         default:
             return state

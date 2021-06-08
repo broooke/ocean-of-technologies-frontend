@@ -3,8 +3,11 @@ import { Image, ListGroup, Button, Form } from 'react-bootstrap'
 import photo from  '../user.png'
 import ReactHtmlParser from 'react-html-parser'
 import classes from './css/ArticleDetail.module.css'
+import classes1 from './css/Tags.module.css'
+import { useHistory } from 'react-router'
 
 function ArticleDetail({article, children}) {
+    const history = useHistory()
     
     return (
         <div>
@@ -19,12 +22,12 @@ function ArticleDetail({article, children}) {
                     <p>
                         <small style={{color: 'rgba(0,0,0,.55)', borderRadius: '5px', border: '2px solid #bbbcc4', padding: 2, marginRight: 15}}>{article?.category?.name}</small>
                         {article?.tags?.map((tag, index)=>(
-                            <span key={index}>#{tag.name} </span>
+                            <span className={classes1.Tag} onClick={() => history.push({pathname: `/search/tags/articles/${tag.name}/`, state: {'search' : tag.name}})} key={index}>#{tag.name} </span>
                         ))}
                     </p>
                     <div style={{background: '#fff', borderRadius: 10, padding: 8, border: '1px solid #bbbcc4'}}>
-                    <Image src={article.picture} fluid />
-                    <div className={classes.Image}>{ReactHtmlParser(article.text)}</div>
+                        <Image src={article.picture} fluid style={{width: '100%', borderRadius: 10, textAlign: '-webkit-center'}} />
+                        <div className={classes.Image}>{ReactHtmlParser(article.text)}</div>
                     </div>
             </div>
             {children}

@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import {articleListReducer, articleDetailReducer, articleRightColumnReducer, mailReducer, searchArticleReducer, searchArticlesTagReducer, createCommentReducer, createArticleReducer} from './reducers/articleReducers'
+import {articleListReducer, articleDetailReducer, articleRightColumnReducer, mailReducer, searchArticleReducer, searchArticlesTagReducer, createCommentReducer, createArticleReducer, getTagsReducer} from './reducers/articleReducers'
 import { userLoginReducer, userRegisterReducer, userUpdateReducer } from './reducers/userReducers'
 import axios from 'axios'
 
@@ -19,6 +19,7 @@ const reducer = combineReducers({
     userRegister: userRegisterReducer,
     userUpdate: userUpdateReducer,
     createArticle: createArticleReducer,
+    getTags: getTagsReducer,
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ?

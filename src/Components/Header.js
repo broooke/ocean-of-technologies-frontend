@@ -19,7 +19,7 @@ function Header() {
 
     return (
         <header className='header p-2'>
-			<Navbar className="border-bottom" style={{backgroundColor: '#fff'}} fixed="top" expand="lg" collapseOnSelect>
+			<Navbar className="border-bottom px-5" style={{backgroundColor: '#fff'}} fixed="top" expand="lg" collapseOnSelect>
 					<LinkContainer style={{color: 'rgb(0, 97, 235)'}} exact={true} to='/'>
 						<Navbar.Brand>Ocean Of Technologies</Navbar.Brand>
 					</LinkContainer>
