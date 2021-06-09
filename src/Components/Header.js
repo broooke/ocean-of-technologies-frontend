@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar, Nav, Container, Col, Image, Row, Button, NavDropdown } from 'react-bootstrap'
+import { Navbar, Nav, Container, Col, Image, Row, Button, NavDropdown, DropdownButton, Dropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import Search from './Search'
 import photo from  '../user.png'
@@ -35,22 +35,30 @@ function Header() {
 							</Col>
 							<Col>
 								<Nav style={{marginTop: 7}}>
-									<Search />
 									{/* <Image style={{border: '1px solid #e9eaec', borderRadius: '50%', marginLeft: '15px'}} src={photo} width="32px" height="32px" roundedCircle />		 */}
 									{userInfo?(
-										<NavDropdown title={userInfo.username} id='username'>
-											<LinkContainer to='/profile'>
-												<NavDropdown.Item>Profile</NavDropdown.Item>
-											</LinkContainer>
+										<div style={{marginLeft: 'auto'}}>
+											<Row>
+												<Col style={{padding: 0}}>
+													<Image style={{border: '1px solid #e9eaec', borderRadius: '50%', marginLeft: '15px'}} src={photo} width="32px" height="32px" roundedCircle />
+												</Col>
+												<Col style={{paddingLeft: 0}}>
+													<NavDropdown title={userInfo.username}>
+														<LinkContainer to='/profile'>
+															<NavDropdown.Item>Profile</NavDropdown.Item>
+														</LinkContainer>
 
-											<NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
-										</NavDropdown>
+														<NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
+													</NavDropdown >
+												</Col>
+											</Row>
+										</div>
 									):(
-										<LinkContainer to="/login">
+										<LinkContainer style={{marginLeft: 'auto'}} to="/login">
 											<Button style={{maxHeight: 37, marginLeft: 10}}>Войти</Button>
 										</LinkContainer>
 									)}
-									
+									<Search />
 								</Nav>
 							</Col>
 							</Navbar.Collapse>

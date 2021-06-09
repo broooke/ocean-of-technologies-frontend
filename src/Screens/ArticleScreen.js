@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { detailArticle } from '../actions/articleActions'
 import ArticleDetail from '../Components/ArticleDetail'
 import {createCommentAction} from '../actions/articleActions'
-import { Container, Row, Col, Form, Button, ListGroup, Image } from 'react-bootstrap'
+import { Container, Row, Col, Form, Button, ListGroup, Image, Alert } from 'react-bootstrap'
 import photo from  '../user.png'
 import RightColumn from '../Components/RightColumn'
 import Loader from '../Components/Loader'
@@ -11,6 +11,7 @@ import Menu from "../Components/Menu"
 import StickyBox from "react-sticky-box"
 import classes from '../Components/css/ArticleDetail.module.css'
 import { LinkContainer } from 'react-router-bootstrap'
+import LoaderCircle from '../Components/LoaderCircle'
 
 function Article({match}) {
     const dispatch = useDispatch()
@@ -23,7 +24,7 @@ function Article({match}) {
     const [name, setName] = useState('')
 
     const userLogin = useSelector(state => state.userLogin)
-    const {error:userError, loading:userLoading, userInfo} = userLogin
+    const {userInfo} = userLogin
 
     useEffect(() => {
         if (userInfo) setName(userInfo.username)
@@ -60,19 +61,26 @@ function Article({match}) {
 
                             {article && <ArticleDetail article={article}>
                             <div>
-                                {article.comments.length===0 && <p>Нет комментариев</p>}
                                     {userInfo ? (
                                         <Form onSubmit={submitHandler}>
                                         <div style={{marginBottom: 25, borderRadius: 10, backgroundColor: '#fff', padding: 25}}>
-                                    <h4>Написать комментарий</h4>
-                                    <div style={{backgroundColor: '#fff', padding: 8, border: '1px solid #bbbcc4', borderRadius: 10}}>
-                                        <Form.Control id="contacttext" value={comment} onChange={(event) => setComment(event.target.value)} as="textarea" placeholder="Введите комментарий..." className={classes.TextArea}></Form.Control>
-                                        <div className="d-grid gap-2 mt-1">
-                                        <Button type="submit" variant="outline-primary" size="lg">Комментировать</Button>
+                                            <h4>Написать комментарий</h4>
+                                                {commentLoading ? (
+                                                    <div style={{backgroundColor: '#fff', padding: 8, border: '1px solid #bbbcc4', borderRadius: 10, textAlign: 'center'}}>
+                                                        <LoaderCircle />
+                                                    </div>
+                                                ):(
+                                                    <div style={{backgroundColor: '#fff', padding: 8, border: '1px solid #bbbcc4', borderRadius: 10}}>
+                                                        <Form.Control required id="contacttext" value={comment} onChange={(event) => setComment(event.target.value)} as="textarea" placeholder="Введите комментарий..." className={classes.TextArea}></Form.Control>
+                                                        <div className="d-grid gap-2 mt-1">
+                                                        <Button type="submit" variant="outline-primary" size="lg">Комментировать</Button>
+                                                        </div>
+                                                        {commentError && <Alert className='mt-2' variant='danger'>{commentError}</Alert> }
+                                                        {commentSuccess && <Alert className='mt-2' variant='success'>Комментарий создан</Alert> }
+                                                    </div>
+                                                )}
                                         </div>
-                                    </div>
-                                    </div>
-                                    </Form>): (
+                                        </Form>): (
                                         <div style={{marginBottom: 25, borderRadius: 10, backgroundColor: '#fff', padding: 25}}>
                                             <h5>Авторизируетесь для того, чтобы оставить комментарий</h5>
                                             <LinkContainer to='/login'>
@@ -82,6 +90,7 @@ function Article({match}) {
                                     ) }
                                 <ListGroup style={{borderRadius: 10, backgroundColor: '#fff', padding: 25, marginBottom: 25}} variant='flush'>
                                     <h4>Комментарии</h4>
+                                        {article.comments.length===0 && <Alert variant='warning'>Нет комментариев</Alert>}
                                         {article.comments.map((comment)=>(
                                             <div key={comment.id} style={{border: '1px solid #bbbcc4', padding: 15 ,background: '#fff', borderRadius: 10, marginBottom: 10}}>
                                                 <div>

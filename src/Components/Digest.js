@@ -1,14 +1,16 @@
 import React, {useState} from 'react'
-import { useDispatch } from 'react-redux'
-import { FormControl, InputGroup,Button, Form } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { FormControl, InputGroup,Button, Form, Alert } from 'react-bootstrap'
 import { mailAction } from '../actions/articleActions'
+import LoaderCircle from './LoaderCircle'
 
 function Digest() {
-
   const [email, setEmail] = useState('')
 
   const dispatch = useDispatch()
 
+  const digestInfo = useSelector(state => state.mail)
+  const {loading, success, error} = digestInfo
   const changeHandler = (event) => {
     setEmail(event.target.value)
   }
@@ -26,22 +28,33 @@ function Digest() {
                 <i style={{color: '#6dbae0', fontSize: 20}} className="far fa-paper-plane"></i>
             </div>
             <hr style={{height: 1.5, backgroundColor: 'gray'}}/>
-            <small>Только самое важное!</small>
-            <Form onSubmit={submitHandler}>
-              <InputGroup className="mb-3">
-                <FormControl
-                  type="email"
-                  onChange={changeHandler}
-                  placeholder="Email"
-                  aria-label="Recipient's username"
-                  aria-describedby="basic-addon2"
-                  value={email}
-                />
-                <InputGroup.Append>
-                  <Button type="submit" variant="outline-secondary">Подписаться</Button>
-                </InputGroup.Append>
-              </InputGroup>
-            </Form>
+            {loading ? (<div style={{textAlign: 'center'}}><LoaderCircle /></div>) : (
+              <div>
+              <small>Только самое важное!</small>
+              <Form onSubmit={submitHandler}>
+                <InputGroup className="mb-3">
+                  <FormControl
+                    type="email"
+                    onChange={changeHandler}
+                    placeholder="Email"
+                    aria-label="Recipient's username"
+                    aria-describedby="basic-addon2"
+                    value={email}
+                    required
+                  />
+                  <InputGroup.Append>
+                    <Button type="submit" variant="outline-secondary">Подписаться</Button>
+                  </InputGroup.Append>
+                </InputGroup>
+              </Form>
+              </div>
+            )}
+            {error ? (
+              <Alert className='mt-2' variant="danger">{error}</Alert>
+            ): null}
+            {success ? (
+              <Alert className='mt-2' variant="success">Вы подписались на "Дайджест"</Alert>
+            ): null}
         </div>
     )
 }

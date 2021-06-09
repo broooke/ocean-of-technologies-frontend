@@ -13,6 +13,9 @@ import {
     USER_UPDATE_REQUEST,
     USER_UPDATE_SUCCESS,
     USER_UPDATE_FAIL,
+    USER_SUPPORT_FAIL,
+    USER_SUPPORT_REQUEST,
+    USER_SUPPORT_SUCCESS,
  } from '../constants/userConstants'
 
  export const login = (username, password) => async (dispatch) => {
@@ -121,6 +124,26 @@ export const updateUser = (user) => async (dispatch, getState) => {
     }catch(error){
         dispatch({
             type: USER_UPDATE_FAIL,
+            payload: error.response && error.response.data.detail
+               ? error.response.data.detail
+               : error.message
+        })
+    }
+}
+
+export const supportUserAction = (support) => async (dispatch) => {
+    try {
+        dispatch({type:USER_SUPPORT_REQUEST})
+
+        const {data} = await axios.post(`api/support/`, support)
+
+        dispatch({
+            type: USER_SUPPORT_SUCCESS,
+            payload: data,
+        })
+    }catch(error){
+        dispatch({
+            type: USER_SUPPORT_FAIL,
             payload: error.response && error.response.data.detail
                ? error.response.data.detail
                : error.message

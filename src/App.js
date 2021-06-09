@@ -8,6 +8,7 @@ import LoginScreen from "./Screens/LoginScreen";
 import RegisterScreen from "./Screens/RegisterScreen";
 import ProfileScreen from "./Screens/ProfileScreen";
 import CreateArticle from "./Screens/CreateArticle";
+import HelpScreen from "./Screens/HelpScreen";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/search/tags/articles/:name" component={TagSearchArticlesScreen} />
         <Route path="/register" component={RegisterScreen} />
         <Route path="/profile" component={ProfileScreen} />
+        <Route path="/support" component={HelpScreen} />
       </main>
     </Router>
   );

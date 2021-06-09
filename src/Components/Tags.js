@@ -15,7 +15,7 @@ function Tags({tags}) {
             {tags.map((tag, index) => (
             <div style={{display: 'flex', justifyContent: 'space-between'}} key={index}>
                 <div className={classes.Tag} onClick={() => history.push({pathname: `/search/tags/articles/${tag.name}/`, state: {'search' : tag.name}})}>#{tag.name}</div>
-                <div>{index + 15*1.5}</div>
+                <div>{tag.numberArticles}</div>
             </div>
             ))}
         </div>

@@ -29,7 +29,7 @@ function Menu() {
                             </Col>
                             <Col style={{display: 'flex', justifyContent: 'flex-end'}}>
                                 <Nav>
-                                    <LinkContainer style={{color: '#686c7d', border: '1px solid #bbbcc4', borderRadius: '8px', background: '#fff' }} to='/'>
+                                    <LinkContainer style={{color: '#686c7d', border: '1px solid #bbbcc4', borderRadius: '8px', background: '#fff' }} to='/support'>
                                         <button>Тех. поддержка</button>
                                     </LinkContainer>
                                     <LinkContainer style={{color: '#686c7d', border: '1px solid #bbbcc4', borderRadius: '8px', marginLeft: 8, background: '#fff' }} to='/article/create'>

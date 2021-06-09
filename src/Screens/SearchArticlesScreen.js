@@ -18,7 +18,7 @@ function SearchArticlesScreen({history, match}) {
     return (
         <React.Fragment>
             <div>
-                <SearchBar keyword={keyword} />
+                <SearchBar keyword={keyword} articlesNumber={articles.length} />
                 {
                 loading ? <Loader />
                     : error ? <h3>{error}</h3>

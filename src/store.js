@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import {articleListReducer, articleDetailReducer, articleRightColumnReducer, mailReducer, searchArticleReducer, searchArticlesTagReducer, createCommentReducer, createArticleReducer, getTagsReducer} from './reducers/articleReducers'
-import { userLoginReducer, userRegisterReducer, userUpdateReducer } from './reducers/userReducers'
+import { userLoginReducer, userRegisterReducer, userUpdateReducer, userSupportReducer } from './reducers/userReducers'
 import axios from 'axios'
 
 axios.defaults.baseURL = "http://127.0.0.1:8000/"
@@ -20,6 +20,7 @@ const reducer = combineReducers({
     userUpdate: userUpdateReducer,
     createArticle: createArticleReducer,
     getTags: getTagsReducer,
+    supportUser: userSupportReducer,
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ?

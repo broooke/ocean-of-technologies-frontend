@@ -78,14 +78,14 @@ export const articleRightColumnReducer = (state={lastArticles:[], popularArticle
     }
 }
 
-export const mailReducer = (state={email:{}}, action) => {
+export const mailReducer = (state={}, action) => {
     switch (action.type) {
         case MAIL_REQUEST:
-            return {loading: true, email: {}}
+            return {loading: true}
         case MAIL_SUCCESS:
-            return {loading: false, email: action.payload}
+            return {loading: false, success: true}
         case MAIL_FAIL:
-            return {loading: false, error: action.payload}
+            return {loading: false, error: action.payload, success: false}
         default:
             return state
     }

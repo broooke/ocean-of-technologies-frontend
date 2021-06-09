@@ -3,11 +3,11 @@ import { Col, Image, Row, Nav, Container, Form, FormText, Button } from 'react-b
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import { updateUser } from '../actions/userActions'
-import {USER_UPDATE_RESET} from '../constants/userConstants'
+import {USER_UPDATE_RESET, USER_LOGIN_SUCCESS} from '../constants/userConstants'
+import LoaderCircle from '../Components/LoaderCircle'
 
 function ProfileScreen({history}) {
     const [username, setUsername] = useState('')
-    const [image] = useState('')
     const [email, setEmail] = useState('')
     const [uploading, setUploading] = useState(false)
 
@@ -30,7 +30,7 @@ function ProfileScreen({history}) {
         if(successUpdate) {
             dispatch({type:USER_UPDATE_RESET})
         }
-    }, [dispatch, userInfo, history])
+    }, [dispatch, userInfo, history, successUpdate])
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -58,7 +58,6 @@ function ProfileScreen({history}) {
 			}
 
 			const {data} = await axios.post('/api/users/upload/', formData, config)
-            console.log(data)
 			setUploading(false)
         }catch(error){
             setUploading(false)
@@ -95,8 +94,9 @@ function ProfileScreen({history}) {
                         </Form.Group>
                         <Form.Group className='mt-2' id='image'>
                             <Form.Label>Аватар</Form.Label>
-                            <Form.Control value={image} onChange={uploadFileHandler} className="form-control" type='file' id='formFile'></Form.Control>
-                            {uploading && <p>Загрузка</p>}
+                            {uploading ? <div style={{textAlign: 'center'}}><LoaderCircle /></div> : (
+                                    <Form.Control onChange={uploadFileHandler} className="form-control" type='file' id='formFile'></Form.Control>
+                            )}
                         </Form.Group>
                         <Form.Group className='mt-2' controlId='email'>
                             <Form.Label>Адрес электронной почты</Form.Label>

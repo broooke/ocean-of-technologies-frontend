@@ -7,8 +7,8 @@ function Article({article}) {
     return (
         <div style={{borderRadius: 10, backgroundColor: '#fff', padding: 25, marginBottom: 25}}>
                 <span>
-                    <Image src={photo} width="24px" height="24px" />&nbsp;
-                    <span>Username</span>&nbsp;
+                    <Image src={article.customer.image} width="24px" height="24px" />&nbsp;
+                    <span>{article.customer.username}</span>&nbsp;
                     <span>{article.date.slice(0, 10)} в {article.date.slice(11, 16)}</span>&nbsp;
                 </span>
 

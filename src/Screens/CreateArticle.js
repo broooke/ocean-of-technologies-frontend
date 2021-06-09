@@ -5,7 +5,6 @@ import { CKEditor } from '@ckeditor/ckeditor5-react'
 import { useDispatch, useSelector } from 'react-redux'
 import {CreateArticleAction, GetTagsAction} from '../actions/articleActions'
 import Select from 'react-select';
-import axios from 'axios'
 
 const editorConfiguration = {	
     toolbar: {
