@@ -14,7 +14,7 @@ function Search() {
     }
 
     return (
-        <Form onSubmit={submitHandler}>
+        <Form style={{marginLeft: 10}} onSubmit={submitHandler}>
             <InputGroup className="mb-3">
                 <FormControl
                   placeholder="Поиск"

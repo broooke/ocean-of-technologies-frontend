@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Image, Row, Nav, Container, Form, FormText, Button } from 'react-bootstrap'
+import { Col, Image, Row, Nav, Container, Form, Button, Alert } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import { updateUser } from '../actions/userActions'
@@ -10,7 +10,7 @@ function ProfileScreen({history}) {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [uploading, setUploading] = useState(false)
-
+    const [profileUpdate, setProfileUpdate] = useState(false)
     const dispatch = useDispatch()
 
 
@@ -28,6 +28,7 @@ function ProfileScreen({history}) {
             history.push('/')
         }
         if(successUpdate) {
+            setProfileUpdate(true)
             dispatch({type:USER_UPDATE_RESET})
         }
     }, [dispatch, userInfo, history, successUpdate])
@@ -78,7 +79,7 @@ function ProfileScreen({history}) {
                     <hr></hr>
                     <div>
                         <Nav variant="pills" className="flex-column">
-                            <Nav.Link href="">Active</Nav.Link>
+                            <Nav.Link href="#/profile/">Данные</Nav.Link>
                         </Nav>
                     </div>
                 </Col>
@@ -87,7 +88,10 @@ function ProfileScreen({history}) {
                     <h5>Ваши данные</h5>
                 </div>
                 <hr></hr>
-                    <Form onSubmit={submitHandler}>
+                {loading ? <LoaderCircle /> :
+                    error ? <Alert className='mt-2' variant='danger'>{error}</Alert>
+                    : (
+                        <Form onSubmit={submitHandler}>
                         <Form.Group controlId='username'>
                             <Form.Label>Имя пользователя</Form.Label>
                             <Form.Control type='name' placeholder='Введите имя пользователя...' value={username} onChange={(e) => setUsername(e.target.value)}></Form.Control>
@@ -101,12 +105,16 @@ function ProfileScreen({history}) {
                         <Form.Group className='mt-2' controlId='email'>
                             <Form.Label>Адрес электронной почты</Form.Label>
                             <Form.Control value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" type='name'></Form.Control>
-					    </Form.Group>
-
+                        </Form.Group>
+                            
                         <div className="d-grid gap-2 mt-3">
                             <Button variant="outline-primary" type='submit' size="lg">Обновить</Button>
                         </div>
+                        {errorUpdate && <Alert className='mt-2' variant='danger'>{errorUpdate}</Alert>}
+                        {profileUpdate && <Alert className='mt-2' variant='success'>Профиль обновлен</Alert>}
                     </Form>
+                )}
+
                 </Col>
             </Row>
         </Container>

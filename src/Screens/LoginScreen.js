@@ -25,9 +25,11 @@ function LoginScreen({location, history}) {
         e.preventDefault()
         dispatch(login(username, password))
     }
+    
     return (
         <FormContainer>
             <h1>Войти</h1>
+            <hr></hr>
             <Form onSubmit={submitHandler}>
                 <Form.Group controlId='username'>
                     <Form.Label>Имя аккаунта</Form.Label>

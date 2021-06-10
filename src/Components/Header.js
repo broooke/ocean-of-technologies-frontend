@@ -2,8 +2,6 @@ import React from 'react'
 import { Navbar, Nav, Container, Col, Image, Row, Button, NavDropdown, DropdownButton, Dropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import Search from './Search'
-import photo from  '../user.png'
-import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../actions/userActions'
 
@@ -19,9 +17,9 @@ function Header() {
 
     return (
         <header className='header p-2'>
-			<Navbar className="border-bottom px-5" style={{backgroundColor: '#fff'}} fixed="top" expand="lg" collapseOnSelect>
-					<LinkContainer style={{color: 'rgb(0, 97, 235)'}} exact={true} to='/'>
-						<Navbar.Brand>Ocean Of Technologies</Navbar.Brand>
+			<Navbar className="border-bottom px-5 py-2" style={{backgroundColor: '#fff'}} fixed="top" expand="lg" collapseOnSelect>
+					<LinkContainer style={{color: '#02A2E8'}} exact={true} to='/'>
+						<Navbar.Brand><Image src='/logo.png' className="d-inline-block align-top" width="30" height="30" />{' '}Ocean Of Technologies</Navbar.Brand>
 					</LinkContainer>
 					<Row style={{width: '100%'}}>
 						<Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -39,10 +37,10 @@ function Header() {
 									{userInfo?(
 										<div style={{marginLeft: 'auto'}}>
 											<Row>
-												<Col style={{padding: 0}}>
-													<Image style={{border: '1px solid #e9eaec', borderRadius: '50%', marginLeft: '15px'}} src={photo} width="32px" height="32px" roundedCircle />
+												<Col style={{padding: 0, marginTop: 7}}>
+													<Image style={{border: '1px solid #e9eaec', borderRadius: '50%'}} src={userInfo.image} width="32px" height="32px" roundedCircle />
 												</Col>
-												<Col style={{paddingLeft: 0}}>
+												<Col style={{paddingLeft: 0, marginTop: 3}}>
 													<NavDropdown title={userInfo.username}>
 														<LinkContainer to='/profile'>
 															<NavDropdown.Item>Profile</NavDropdown.Item>
@@ -54,8 +52,8 @@ function Header() {
 											</Row>
 										</div>
 									):(
-										<LinkContainer style={{marginLeft: 'auto'}} to="/login">
-											<Button style={{maxHeight: 37, marginLeft: 10}}>Войти</Button>
+										<LinkContainer style={{marginLeft: 'auto', maxHeight:'37px'}} to="/login">
+											<Button>Войти</Button>
 										</LinkContainer>
 									)}
 									<Search />

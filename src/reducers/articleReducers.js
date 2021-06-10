@@ -26,10 +26,13 @@ import {
     CREATE_COMMENT_REQUEST,
     CREATE_COMMENT_SUCCESS,
     CREATE_COMMENT_FAIL,
+    CREATE_COMMENT_RESET,
 
     CREATE_ARTICLE_REQUEST,
     CREATE_ARTICLE_SUCCESS,
     CREATE_ARTICLE_FAIL,
+    CREATE_ARTICLE_RESET,
+    
     GET_TAGS_REQUEST,
     GET_TAGS_SUCCESS,
     GET_TAGS_FAIL,
@@ -125,6 +128,8 @@ export const createCommentReducer = (state={}, action) => {
             return {loading: false, success: true}
         case CREATE_COMMENT_FAIL:
             return {loading: false, error: action.payload}
+        case CREATE_COMMENT_RESET:
+            return {}
         default:
             return state
     }
@@ -138,6 +143,8 @@ export const createArticleReducer = (state={}, action) => {
             return {loading: false, success: true}
         case CREATE_ARTICLE_FAIL:
             return {loading: false, error: action.payload}
+        case CREATE_ARTICLE_RESET:
+            return {}
         default:
             return state
     }

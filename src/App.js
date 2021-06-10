@@ -14,7 +14,7 @@ function App() {
   return (
     <Router>
       <Header />
-      <main style={{marginTop: 60, background: '#f4f5f9', minHeight: '100vh'}}>
+      <main style={{marginTop: 65, background: '#f4f5f9', minHeight: '100vh'}}>
         <Route path="/" component={ArticlesScreen} exact />
         <Route path="/login" component={LoginScreen} />
         <Route path="/articles/:url" component={ArticleScreen} />

@@ -1,3 +1,7 @@
+.Tag{
+    color: #9194a1;
+}
+
 .Tag:hover {
     color: #0a58ca;
     cursor: pointer;

@@ -7,18 +7,19 @@ import { listArticles } from '../actions/articleActions'
 import Loader from '../Components/Loader'
 import Menu from "../Components/Menu"
 import StickyBox from "react-sticky-box"
-
+import { useLocation } from "react-router-dom"
 
 function Articles({history}) {
     const dispatch = useDispatch()
     const articleList = useSelector(state => state.articleList)
     const {error, loading, articles} = articleList
-
+    const { pathname } = useLocation()
     const keyword = history.location.search
     
     useEffect(() => {
         dispatch(listArticles(keyword))
-    }, [dispatch, keyword])
+        window.scrollTo(0, 0)
+    }, [dispatch, keyword, pathname])
 
     return (
         <React.Fragment>

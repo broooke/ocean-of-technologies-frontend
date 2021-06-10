@@ -21,13 +21,13 @@ function ArticleSearch({article, keyword}) {
             <Col xs={5}>
                 <div style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
                     <div>
-                        <Image src={photo} width="24px" height="24px" />&nbsp;
+                        <Image src={article.customer.image} width="24px" height="24px" />&nbsp;
                         <span>Username</span>&nbsp;
                         <span>{article.date.slice(0, 10)} в {article.date.slice(11, 16)}</span>&nbsp;
                     </div>
                     <div>
                         <span><i className='fas fa-eye'></i> {article.views}</span>&nbsp; &nbsp;
-                        <span><i className='fas fa-comment'></i> {article.comments.length}</span>&nbsp;
+                        <span><i className='fas fa-comment'></i> {article.number_comments}</span>&nbsp;
                     </div>
                 </div>
                 <h6>

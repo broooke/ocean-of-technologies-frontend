@@ -13,9 +13,11 @@ import {
     USER_UPDATE_SUCCESS,
     USER_UPDATE_FAIL,
     USER_UPDATE_RESET,
+
     USER_SUPPORT_REQUEST,
     USER_SUPPORT_SUCCESS,
     USER_SUPPORT_FAIL,
+    USER_SUPPORT_RESET,
  } from '../constants/userConstants'
 
  export const userLoginReducer = (state={}, action) => {
@@ -78,6 +80,8 @@ export const userSupportReducer = (state={}, action) => {
             return {loading: false, success: true}
         case USER_SUPPORT_FAIL:
             return {loading: false, success: false, error: action.payload}
+        case USER_SUPPORT_RESET:
+            return {}
         default:
             return state
     }

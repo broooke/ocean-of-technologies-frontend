@@ -11,8 +11,8 @@ function News({articles}) {
             {articles.map((article, index) => (
             <div key={index}>
                 <span style={{display: 'flex', justifyContent: 'space-between'}}>
-                    <small>{article.date.slice(0, 10)} в {article.date.slice(11, 16)}</small>&nbsp;
-                    <small><i className='fas fa-eye'></i> {article.views}</small>
+                    <small style={{color: '#9194a1', fontSize: 14}}>{article.date.slice(0, 10)} в {article.date.slice(11, 16)}</small>&nbsp;
+                    <small style={{color: '#9194a1', fontSize: 14}}><i className='fas fa-eye'></i> {article.views}</small>
                 </span>
                 <p style={{fontWeight: 'bold'}}>{article.headline}</p>
             </div>
